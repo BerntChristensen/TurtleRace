@@ -29,7 +29,7 @@ public class RacingEvent {
 		while (t1.getY() > finishLine && t2.getY() > finishLine) {
 			t1.forward(rand.nextInt(MAXSPEED+1));
 			t2.forward(rand.nextInt(MAXSPEED+1));
-			SimpleWindow.delay(3);
+			SimpleWindow.delay(5);
 		}
 	}
 }
