@@ -31,7 +31,7 @@ Johan Bäversjö, C11 (dic11jba@student.lu.se)}
                               % definierade ovan med \title, \author
                               % och eventuellt \date
 \section{Bakgrund}
-Uppgiften består i att skapa en racebana som är oberoende av vad för race som utförs på den, ett raceevent där två stycken sköldpaddor tävlar mot varandra och att genomföra själva loppet där dessa två sköldpaddor möts.
+Uppgiften består i att skapa en tävlingsbana som är oberoende av vad för tävling som utförs på den, en tävling där två stycken sköldpaddor tävlar mot varandra och att genomföra själva loppet där dessa två sköldpaddor möts. 
 
 \section{Modell}
 Modellen av loppet innehåller följande klasser:
@@ -61,7 +61,10 @@ Bilarna (\code{Car}-objekten) är helt passiva och skickas bara runt i systemet 
 
 
 \section{Brister och kommentarer}
+Programmet kan endast hantera ett lopp mellan två stycken sköldpaddor i dess nuvarande utförande. För att kunna lägga till sköldpaddor behövs stora redigeringar i koden göras.
 
+En förbättring hade varit att använda en vektor istället för dynamiskt kunna bestämma antalet skäldpaddor.
+Båda skölldpaddorna har okända namn, vilket medför att det inte är möjligt att ta reda på vilken sköldpadda som vunnit bortsett från det visuella resultatet.
 
 
 \section{Programlistor}
