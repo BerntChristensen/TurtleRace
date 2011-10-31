@@ -1,0 +1,90 @@
+% !TEX encoding = UTF-8 Unicode
+\documentclass[a4paper]{article}
+
+\usepackage[T1]{fontenc}     % För svenska bokstäver
+\usepackage[utf8]{inputenc}  % Teckenkodning UTF8
+\usepackage[swedish]{babel}  % För svensk avstavning och svenska
+                             % rubriker (t ex "Innehållsförteckning")
+\usepackage{fancyvrb}        % För programlistor med tabulatorer
+\fvset{tabsize=4}            % Tabulatorpositioner
+\fvset{fontsize=\small}      % Lagom storlek för programlistor
+
+\title{TurtleRaze \\
+	Inlämningsuppgift 1, Programmeringsteknik för C/D}
+\author{Bernt Christensen, C11 (dic11bch@student.lu.se)\\
+Johan Bäversjö, C11 (dic11jba@student.lu.se}
+%\date{31 oktober 2011}        % Blir dagens datum om det utelämnas
+
+% *** Tillägg för denna rapport. ***
+% Paket:
+\usepackage{graphicx}         % För att inkludera bilder.
+
+% Kommandon i denna rapport
+\newcommand{\code}[1]{\texttt{#1}} % För programkod i text.
+% *** Slut på tillägg för denna rapport. ***
+
+\begin{document}              % Början på dokumentet
+
+\maketitle                    % Skriver ut rubriken som vi
+                              % definierade ovan med \title, \author
+                              % och eventuellt \date
+
+\section{Bakgrund}
+Uppgiften består i att skapa en racebana som är oberoende av vad för race som utförs på den, ett raceevent där två stycken sköldpaddor tävlar mot varandra och att genomföra själva loppet där dessa två sköldpaddor möts.
+
+Verksamheten vid en biltvättfirma som har två tvättstationer med något olika kapacitet ska simuleras. I den första tvättstationen tar en biltvätt 8 minuter, i den andra tar den 10 minuter. Bilarna anländer till anläggningen enligt en slumpmässig fördelning och ställer sig i en kö i väntan på att bli tvättade. Från kön körs bilarna in i en ledig tvättstation (om båda stationerna är lediga väljs den snabbaste). När en bil är färdigtvättad körs den ut ur tvättstationen och lämnar systemet. 
+
+
+Bilar anländer under 60 minuter. Simuleringen ska pågå så länge det finns någon bil i ankomstkön. Resultatet av simuleringen ska vara en tabell med bilnummer (1 för den första bilen som anländer, 2 för nästa, osv), ankomsttid, avgångstid och tvättstation för varje bil.
+
+Bilarnas ankomster ska beskrivas av en Poisson-process (se till exempel Rydén och Lindgren, Markovprocesser, Lund 2000, eller annan lärobok i matematisk statistik).
+
+
+\section{Modell}
+Modellen av anläggningen innehåller följande klasser:
+
+\begin{tabular}{lp{8cm}}
+\code{TurtleRaze} & Innehåller \code{main}-metoden som initierar alla objekt som behövs för att genomföra ett raze. \\
+\code{RazeTrack} & Klass som beskriver banan för raze't, banan är oberoende av vad som ritas på den. \\
+\code{RazeEvent} & Beskriver en tvättstation. Håller reda på en bil som tvättas. \\
+\code{Turtle} & Klass som beskriver en Turtle i planet. \\
+\end{tabular}
+
+\vspace{\baselineskip}
+Simuleringen implementeras genom att programmet under hela simuleringstiden varje minut undersöker vad som ska ske. Följande händelser kan inträffa:
+
+\begin{itemize}
+\item En bil anländer till systemet. Detta hanteras av klassen \code{Entry}, som varje minut drar ett Poisson-fördelat slumptal som anger antalet bilar som anländer.
+\item En bil börjar tvättas (flyttas från kön till en tvättstation). Detta hanteras av klassen \code{CarWash}.
+\item En bil är färdigtvättad (flyttas från en tvättstation till utfarten). Också detta hanteras av klassen \code{CarWash}.
+\item En bil lämnar systemet. Detta hanteras av klassen \code{Exit}.
+\end{itemize}
+
+
+De nämnda ''aktiva'' klasserna har alla en metod \code{tick()} som anropas varje minut. Även klassen \code{Clock}, som håller reda på tiden i systemet, har en sådan metod.
+
+Bilarna (\code{Car}-objekten) är helt passiva och skickas bara runt i systemet av de aktiva klasserna. Klasserna \code{Queue} och \code{WashingStation} är också passiva. Deras uppgift är att hålla reda på \code{Car}-objekt under tiden bilarna står i kö eller tvättas. 
+
+
+\section{Brister och kommentarer}
+
+
+
+\section{Programlistor}
+Klasserna finns i filer med motsvarande namn. Till exempel innehåller filen  \code{RazeTrack.java} klassen \code{RazeTrack}. Alla klasser som används finns i samma katalog som huvudprogrammet
+
+\subsection{\code{SimWash}}
+
+% *** Observera: här ligger java-filerna i samma katalog som 
+% *** LaTeX-filen. Det är inte nödvändigt; man kan skriva ett
+% *** absolut filnamn (med sökvägen till java-filerna i ert
+% *** Eclipse-projekt).
+%\VerbatimInput{SimWash.java}
+
+%\subsection{\code{CarWash}}
+
+%\VerbatimInput{CarWash.java}
+
+%\ldots\ osv, liknande programlistor för samtliga klasser.
+
+\end{document}                  % Slut på dokumentet
