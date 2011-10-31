@@ -1,6 +1,7 @@
 % !TEX encoding = UTF-8 Unicode
 \documentclass[a4paper]{article}
 
+
 \usepackage[T1]{fontenc}     % För svenska bokstäver
 \usepackage[utf8]{inputenc}  % Teckenkodning UTF8
 \usepackage[swedish]{babel}  % För svensk avstavning och svenska
@@ -12,8 +13,8 @@
 \title{TurtleRaze \\
 	Inlämningsuppgift 1, Programmeringsteknik för C/D}
 \author{Bernt Christensen, C11 (dic11bch@student.lu.se)\\
-Johan Bäversjö, C11 (dic11jba@student.lu.se}
-%\date{31 oktober 2011}        % Blir dagens datum om det utelämnas
+Johan Bäversjö, C11 (dic11jba@student.lu.se)}
+
 
 % *** Tillägg för denna rapport. ***
 % Paket:
@@ -23,31 +24,24 @@ Johan Bäversjö, C11 (dic11jba@student.lu.se}
 \newcommand{\code}[1]{\texttt{#1}} % För programkod i text.
 % *** Slut på tillägg för denna rapport. ***
 
+
 \begin{document}              % Början på dokumentet
 
 \maketitle                    % Skriver ut rubriken som vi
                               % definierade ovan med \title, \author
                               % och eventuellt \date
-
 \section{Bakgrund}
 Uppgiften består i att skapa en racebana som är oberoende av vad för race som utförs på den, ett raceevent där två stycken sköldpaddor tävlar mot varandra och att genomföra själva loppet där dessa två sköldpaddor möts.
 
-Verksamheten vid en biltvättfirma som har två tvättstationer med något olika kapacitet ska simuleras. I den första tvättstationen tar en biltvätt 8 minuter, i den andra tar den 10 minuter. Bilarna anländer till anläggningen enligt en slumpmässig fördelning och ställer sig i en kö i väntan på att bli tvättade. Från kön körs bilarna in i en ledig tvättstation (om båda stationerna är lediga väljs den snabbaste). När en bil är färdigtvättad körs den ut ur tvättstationen och lämnar systemet. 
-
-
-Bilar anländer under 60 minuter. Simuleringen ska pågå så länge det finns någon bil i ankomstkön. Resultatet av simuleringen ska vara en tabell med bilnummer (1 för den första bilen som anländer, 2 för nästa, osv), ankomsttid, avgångstid och tvättstation för varje bil.
-
-Bilarnas ankomster ska beskrivas av en Poisson-process (se till exempel Rydén och Lindgren, Markovprocesser, Lund 2000, eller annan lärobok i matematisk statistik).
-
-
 \section{Modell}
-Modellen av anläggningen innehåller följande klasser:
+Modellen av loppet innehåller följande klasser:
 
 \begin{tabular}{lp{8cm}}
-\code{TurtleRaze} & Innehåller \code{main}-metoden som initierar alla objekt som behövs för att genomföra ett raze. \\
-\code{RazeTrack} & Klass som beskriver banan för raze't, banan är oberoende av vad som ritas på den. \\
-\code{RazeEvent} & Beskriver en tvättstation. Håller reda på en bil som tvättas. \\
+\code{TurtleRace} & Innehåller \code{main}-metoden som initierar alla objekt som behövs för att genomföra ett lopp. \\
 \code{Turtle} & Klass som beskriver en Turtle i planet. \\
+\code{RaceTrack} & Klass som beskriver en banas utseende, är oberoende av vilken typ av objekt som tävlar. \\
+\code{RacingEvent} & Beskriver en tävling. Håller reda på bana samt deltagare \\
+
 \end{tabular}
 
 \vspace{\baselineskip}
@@ -73,15 +67,19 @@ Bilarna (\code{Car}-objekten) är helt passiva och skickas bara runt i systemet 
 \section{Programlistor}
 Klasserna finns i filer med motsvarande namn. Till exempel innehåller filen  \code{RazeTrack.java} klassen \code{RazeTrack}. Alla klasser som används finns i samma katalog som huvudprogrammet
 
-\subsection{\code{SimWash}}
+\subsection{\code{TurtleRace}}
+\VerbatimInput{../src/TurtleRace.java}
 
-% *** Observera: här ligger java-filerna i samma katalog som 
-% *** LaTeX-filen. Det är inte nödvändigt; man kan skriva ett
-% *** absolut filnamn (med sökvägen till java-filerna i ert
-% *** Eclipse-projekt).
-%\VerbatimInput{SimWash.java}
 
-%\subsection{\code{CarWash}}
+\subsection{\code{Turtle}}
+\VerbatimInput{../src/Turtle.java}
+
+\subsection{\code{RaceTrack}}
+\VerbatimInput{../src/RaceTrack.java}
+
+\subsection{\code{RacingEvent}}
+\VerbatimInput{../src/RacingEvent.java}
+
 
 %\VerbatimInput{CarWash.java}
 
