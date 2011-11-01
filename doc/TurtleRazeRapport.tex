@@ -27,14 +27,24 @@ Johan Bäversjö, C11 (dic11jba@student.lu.se)}
 
 \begin{document}              % Början på dokumentet
 
-\maketitle                    % Skriver ut rubriken som vi
-                              % definierade ovan med \title, \author
-                              % och eventuellt \date
+\maketitle
+\thispagestyle{empty}
+\newpage
+\setcounter{page}{1}
 \section{Bakgrund}
-Uppgiften består i att skapa en tävlingsbana som är oberoende av vad för tävling som utförs på den, en tävling där två stycken sköldpaddor tävlar mot varandra och att genomföra själva loppet där dessa två sköldpaddor möts. 
+Uppgiften består i att skapa en tävlingsbana som är oberoende av vad för tävling som utförs på den, en tävling där två stycken sköldpaddor tävlar mot varandra samt att genomföra själva loppet där dessa två sköldpaddor möts.
+
+Så här kommer ett lopp att se ut:
+\begin{center}
+\includegraphics[scale=0.35]{turtle_race.png}
+\end{center}
+Längst ner och högst upp på bilden kan start- respektive mållinje ses. De två lodräta linjerna representerar de sköldpaddor som tävlar mot varandra.
+
+Fokus i uppgiften ligger på hur programmet skall utformas snarare än vad som utförs. 
 
 \section{Modell}
 Modellen av loppet innehåller följande klasser:
+
 
 \begin{tabular}{lp{8cm}}
 \code{TurtleRace} & Innehåller \code{main}-metoden som initierar alla objekt som behövs för att genomföra ett lopp. \\
@@ -45,26 +55,24 @@ Modellen av loppet innehåller följande klasser:
 \end{tabular}
 
 \vspace{\baselineskip}
-Simuleringen implementeras genom att programmet under hela simuleringstiden varje minut undersöker vad som ska ske. Följande händelser kan inträffa:
+Loppet implementeras genom att programmet itererar tills en av sköldpaddorna nått mållinjen.
+Nedan följer en beskrivning till flödet i programmet:
 
 \begin{itemize}
-\item En bil anländer till systemet. Detta hanteras av klassen \code{Entry}, som varje minut drar ett Poisson-fördelat slumptal som anger antalet bilar som anländer.
-\item En bil börjar tvättas (flyttas från kön till en tvättstation). Detta hanteras av klassen \code{CarWash}.
-\item En bil är färdigtvättad (flyttas från en tvättstation till utfarten). Också detta hanteras av klassen \code{CarWash}.
-\item En bil lämnar systemet. Detta hanteras av klassen \code{Exit}.
+\item Fönstret, banan och sköldpaddorna initieras. Banan ritas ut i fönstret av typ \code{SimpleWindow} i klassen \code{RaceTrack}.
+\item Ett lopp skapas med klassen \code{RacingEvent}
+\item Loppet initieras i och med ett musklick i fönstret. Då ställs sköldpaddorna först upp på startpositionerna, som hämtas från \code{RaceTrack},  i metoden \code{race()} från klassen \code{RacingEvent}
+\item Metoden \code{race()} returnerar när en av sköldpaddorna nått mållinjen, därefter är programmet färdigt. 
 \end{itemize}
-
-
-De nämnda ''aktiva'' klasserna har alla en metod \code{tick()} som anropas varje minut. Även klassen \code{Clock}, som håller reda på tiden i systemet, har en sådan metod.
-
-Bilarna (\code{Car}-objekten) är helt passiva och skickas bara runt i systemet av de aktiva klasserna. Klasserna \code{Queue} och \code{WashingStation} är också passiva. Deras uppgift är att hålla reda på \code{Car}-objekt under tiden bilarna står i kö eller tvättas. 
-
 
 \section{Brister och kommentarer}
 Programmet kan endast hantera ett lopp mellan två stycken sköldpaddor i dess nuvarande utförande. För att kunna lägga till sköldpaddor behövs stora redigeringar i koden göras.
 
 En förbättring hade varit att använda en vektor istället för dynamiskt kunna bestämma antalet skäldpaddor.
-Båda skölldpaddorna har okända namn, vilket medför att det inte är möjligt att ta reda på vilken sköldpadda som vunnit bortsett från det visuella resultatet.
+
+Båda skölldpaddorna har okända namn, vilket medför att det inte är möjligt att ta reda på vilken sköldpadda som vunnit bortsett från det visuella resultatet. 
+
+För att kunna koppla ihop detta programmet med andra system hade vi till exempel låtit användaren specifiera alla sköldpaddor som parametrar för programmet vid uppstart. Programmet hade sedan skrivit ut namnet på vinnaren.
 
 
 \section{Programlistor}
