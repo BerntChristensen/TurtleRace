@@ -1,9 +1,10 @@
 import se.lth.cs.ptdc.window.SimpleWindow;
 
 public class TurtleRace {
-	private final static int WINY = 400; //storleken på fönster i y-led
-	private final static int WINX = 400; //storleken på fönster i x-led
-	private final static int MARGIN = 50; //Marginal för start och slutpunkt för kapplöpningsbanan i y-led
+	private final static int WINY = 400, //storleken på fönster i y-led
+		WINX = 400, //storleken på fönster i x-led
+		MARGIN = 50; //Marginal för start och slutpunkt för banan i y-led
+	
 	/* Skapar sköldpaddorna, kapplöpningsbanan och ett lopp,
 	 * genomför loppet */
 	public static void main(String[] args){
