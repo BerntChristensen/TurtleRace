@@ -33,11 +33,13 @@ public class Turtle {
 
 	/** Går rakt framåt n pixlar i den riktning som huvudet pekar */
 	public void forward(int n) {
+		//flyttar markören till startposition
 		w.moveTo((int) x, (int) y);
 		double a = Math.toRadians(alpha);
 		x = (int) Math.round(x + (n * Math.cos(a)));
 		y = (int) Math.round(y - (n * Math.sin(a)));
 		if (draw) {
+			//rita en linje i fönstret till slutposition
 			w.lineTo((int) x, (int) y);
 		}
 	}
